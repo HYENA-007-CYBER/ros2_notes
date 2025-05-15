@@ -11,13 +11,11 @@ We need to learn about the basics of ROS2
 - **ROS 2 Version**: [ROS2-humble(jammy jellyfish)]
 - **Operating System**: Ubuntu 22.04
 - **Programming Language**: Python
-  
-
 ---
 
 ##  What I Learned
 
-###  ROS 2 Architecture
+###  ROS2 Framework
 - ROS 2 is built on the concept of **nodes**, which are independent processes that perform computation.
 - Nodes communicate with each other using **topics** through a **publish/subscribe** model.
 
