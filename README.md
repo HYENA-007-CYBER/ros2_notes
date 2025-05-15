@@ -1,18 +1,17 @@
 #  Week 1 - Basics of ROS 2
 
 ##  Objective
-The goal of this task was to understand the foundational concepts of ROS 2 by:
+We need to learn about the basics of ROS2
 - Creating a **publisher node** that sends integers.
 - Creating a **subscriber node** that receives those integers, calculates their square, and prints the result.
 
 ---
 
-##  Environment
-- **ROS 2 Version**: [Insert your version, e.g., Humble]
+##  Requirements
+- **ROS 2 Version**: [ROS2-humble(jammy jellyfish)]
+- **Operating System**: Ubuntu 22.04
 - **Programming Language**: Python
-- **Operating System**: Ubuntu 20.04 / 22.04
-- **Workspace**: `ros2_ws`
-- **Package Name**: `basic_pubsub`
+  
 
 ---
 
