@@ -1,13 +1,13 @@
-# 🧪 Week 1 - Basics of ROS 2
+#  Week 1 - Basics of ROS 2
 
-## 📌 Objective
+##  Objective
 The goal of this task was to understand the foundational concepts of ROS 2 by:
 - Creating a **publisher node** that sends integers.
 - Creating a **subscriber node** that receives those integers, calculates their square, and prints the result.
 
 ---
 
-## 🛠️ Environment
+##  Environment
 - **ROS 2 Version**: [Insert your version, e.g., Humble]
 - **Programming Language**: Python
 - **Operating System**: Ubuntu 20.04 / 22.04
@@ -16,36 +16,36 @@ The goal of this task was to understand the foundational concepts of ROS 2 by:
 
 ---
 
-## 📚 What I Learned
+##  What I Learned
 
-### 🔧 ROS 2 Architecture
+###  ROS 2 Architecture
 - ROS 2 is built on the concept of **nodes**, which are independent processes that perform computation.
 - Nodes communicate with each other using **topics** through a **publish/subscribe** model.
 
-### 📤 Publisher Node
+###  Publisher Node
 - A publisher continuously sends messages over a specified topic.
 - I learned how to create a timer-based publishing loop to simulate streaming data.
 
-### 📥 Subscriber Node
+### Subscriber Node
 - A subscriber listens to a topic and executes a callback function when a message is received.
 - I practiced performing operations (like squaring a number) on incoming data and logging results.
 
-### 📦 Creating a ROS 2 Python Package
+###  Creating a ROS 2 Python Package
 - Learned how to create a package using `ros2 pkg create`.
 - Configured the package with `setup.py` and `package.xml` to define dependencies and entry points.
 
-### 🧪 Building and Running Nodes
+###  Building and Running Nodes
 - Used `colcon build` to compile the workspace.
 - Learned to source the workspace environment correctly before running nodes.
 - Ran nodes using `ros2 run`, each in separate terminals to simulate real-time communication.
 
-### 🧩 Debugging & Common Issues
+###  Debugging & Common Issues
 - Faced issues like mismatched topic names, incorrect message types, and forgetting to source the setup file.
 - Gained confidence in using ROS 2 logging for debugging and tracing behavior.
 
 ---
 
-## ✅ Outcome
+##  Outcome
 By the end of this task, I successfully built a ROS 2 system where:
 - One node published a stream of numbers.
 - Another node subscribed to those numbers, computed their square, and logged the output.
@@ -54,9 +54,6 @@ This exercise helped me solidify the basics of ROS 2 communication and build con
 
 ---
 
-## 🏁 Next Steps
-- Explore custom message types.
-- Learn about services and actions in ROS 2.
-- Implement more complex node interactions and state-based logic.
+
 
 
