@@ -20,11 +20,11 @@ We need to learn about the basics of ROS2
 - Nodes communicate with each other using **topics** through a **publish/subscribe** model
 
 ### Creating a ROS2 workspace
-Workspace is a folder that contains ROS  packages and allows us to build and run them together
-We have a **src/(source folder)** and **(build/ and install/ and log/)** that are auto generated during colcon build process
+Workspace is a folder that contains ROS  packages and allows us to build and run them together<br>
+We need to create a **src/(source folder)** and **(build/ and install/ and log/) folders** that are auto generated during the build process
 - We need to create our packages inside the src/ folder
 - We need to use the **colcon build** command to build all the packages in our workspace
-- we need to source the **install/setup.bash** file so the terminal can recognize the packages and to run the nodes
+- we need to source the **install/setup.bash** file so that the terminal can recognize the packages and to run the nodes
 
 ###  Publisher Node
 - A publisher continuously sends messages over a specified topic.
