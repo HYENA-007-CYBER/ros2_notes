@@ -24,7 +24,21 @@ Workspace is a folder that contains ROS  packages and allows us to build and run
 We need to create a **src/(source folder)** and **(build/ and install/ and log/) folders** that are auto generated during the build process
 - We need to create our packages inside the src/ folder
 - We need to use the **colcon build** command to build all the packages in our workspace
-- we need to source the **install/setup.bash** file so that the terminal can recognize the packages and to run the nodes
+- we need to source the **install/setup.bash** file so that the terminal can recognize the packages and can run the nodes
+
+
+### Creating a ROS2 Package
+
+Packages are the basic unit for organizing software in ROS2. A package can contain nodes, libraries, configuration files, launch files, and more.  
+Package sholud be created inside the **src/** folder of our ROS2 workspace.
+
+- Use the `ros2 pkg create` command to create a new package inside the **src/** folder
+- A package must have a unique name and follow naming conventions 
+- We need to specify the build type (e.g., ament_python, ament_cmake) 
+- We need to  define the  dependencies using the `--dependencies` flag
+
+---
+
 
 ###  Publisher Node
 - A publisher continuously sends messages over a specified topic.
