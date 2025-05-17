@@ -26,7 +26,7 @@ We need to create a **src/(source folder)** and **(build/ and install/ and log/)
 - We need to use the **colcon build** command to build all the packages in our workspace
 - we need to source the **install/setup.bash** file so that the terminal can recognize the packages and can run the nodes
 
-
+---
 
 
 ### Creating a ROS2 Package
@@ -41,7 +41,7 @@ A **ROS2 package** is the basic unit of organization in a ROS2 workspace. It con
 
 All packages must be placed inside the `src/` folder of our ROS2 workspace. After creating packages, we need to  use `colcon build` to build the workspace and `source install/setup.bash` to use the packages in the terminal 
 
----
+
 
 #### Creating a Python Package in ROS2
 
@@ -82,7 +82,7 @@ A **Python package** in ROS2 uses the `ament_python` build type and contains nod
         ],
     },
     ```
----
+
 
 #### Creating a C++ Package in ROS2
 
@@ -121,9 +121,6 @@ A **C++ package** in ROS2 uses the `ament_cmake` build type and contains nodes w
     ```
 
 ---
-
-
-
 
 ###  Publisher Node
 - A publisher continuously sends messages over a specified topic.
