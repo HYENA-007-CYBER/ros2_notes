@@ -160,36 +160,50 @@ It acts as a data producer
 
 
 
-#### **QUESTION PROBLEM** - Basic Structure OF Publisher node
+### **QUESTION PROBLEM** - Basic Structure OF Publisher node
 
 ```python
+#!/usr/bin/env/python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import Int32
 
-class MyPublisher(Node):
+class MyNode(Node):
     def __init__(self):
-        super().__init__('my_publisher_node')  # Node name
-        self.publisher_ = self.create_publisher(String, 'my_topic', 10)  # Create publisher
-        self.timer = self.create_timer(1.0, self.publish_callback)  # Call function every 1 second
+        super().__init__('number_publisher')
+        self.publisher = self.create_publisher(Int32,'number',10)
+        self.counter=1
+        self.timer = self.create_timer(1.0 , self.publish_number)
+        
+    def publish_number(self):
+        msg =Int32()
+        msg.data =self.counter
+        self.publisher.publish(msg)
+        self.get_logger().info(f'Publishing: {msg.data}')
+        self.counter +=1
 
-    def publish_callback(self):
-        msg = String()
-        msg.data = 'Hello, ROS2!'
-        self.publisher_.publish(msg)
-        self.get_logger().info(f'Published: "{msg.data}"')
 
-def main():
-    rclpy.init()
-    node = MyPublisher()
-    rclpy.spin(node)  # Keeps node running
+def main(args=None):
+    rclpy.init(args=args)
+    node=MyNode()
+    rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
+    
 
+if __name__ =='__main__':
+    main()
+```
+#### Key Terms:
+##### **1.create_publisher()**
+- Used to create a publisher that can send messages to a topic
+  ```python
+  self.publisher = self.create_publisher(Int32, 'number', 10)
+  ```
+ - Publishes **Int32** messages to the **number** topic.
+ - **Int32** - A standard message type provided by ROS2 (from std_msgs), representing a 32-bit signed integer
+ - **10** - The queue size of the message
 
-
-
-  
 
 
 ###  Publisher Node
