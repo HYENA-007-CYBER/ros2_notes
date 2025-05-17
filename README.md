@@ -2,8 +2,8 @@
 
 ##  Objective
 We need to learn about the basics of ROS2
-- Creating a **publisher node** that sends integers.
-- Creating a **subscriber node** that receives those integers, calculates their square, and prints the result.
+- To create a **publisher node** that sends numbers
+- To create a **subscriber node** that receives those integers, calculates their square, and prints the result
 
 ---
 
@@ -299,14 +299,7 @@ if __name__=='__main__':
   
 ---
 
-##  Outcome
-By the end of this task, I successfully built a ROS 2 system where:
-- One node published a stream of numbers.
-- Another node subscribed to those numbers, computed their square, and logged the output.
 
-This exercise helped me solidify the basics of ROS 2 communication and build confidence in working with publisher-subscriber models.
-
----
 
 
 
