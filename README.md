@@ -200,7 +200,7 @@ if __name__ =='__main__':
     ```python
     self.publisher = self.create_publisher(Int32, 'number', 10)
     ```
-     - Publishes **Int32** messages to the **number** topic.
+     - Publishes **Int32** messages to the **number** topic
      - **Int32** - A standard message type provided by ROS2 (from std_msgs), representing a 32-bit signed integer
      - **10** - The queue size of the message
 
@@ -237,7 +237,8 @@ It acts as a data consumer.
 - It then **receives messages** from that topic using a **callback function**  
 - The callback function is automatically triggered whenever a new message is received  
 - Multiple subscribers can listen to the same topic
-- The subscriber must be spun using `rclpy.spin()` to keep listening for incoming messages  
+- The subscriber must be spun using `rclpy.spin()` to keep listening for incoming messages
+---
 
 
 ### **QUESTION PROBLEM** - Basic Structure OF Subscriber node
@@ -250,17 +251,12 @@ from std_msgs.msg import Int32
 
 class MyNode(Node):
     def __init__(self):
-        super().__init__('number_publisher')
-        self.publisher = self.create_publisher(Int32,'number',10)
-        self.counter=1
-        self.timer = self.create_timer(1.0 , self.publish_number)
-        
-    def publish_number(self):
-        msg =Int32()
-        msg.data =self.counter
-        self.publisher.publish(msg)
-        self.get_logger().info(f'Publishing: {msg.data}')
-        self.counter +=1
+        super().__init__('square_subscriber')
+        self.subscriber=self.create_subscription(Int32,'number',self.listener_callback,10)
+    def listener_callback(self,msg):
+        square =msg.data**2
+        self.get_logger().info(f'Received: {msg.data}, Square: {square}')
+
 
 
 def main(args=None):
@@ -269,66 +265,38 @@ def main(args=None):
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
-    
-
-if __name__ =='__main__':
+if __name__=='__main__':
     main()
 ```
 #### Key Terms:
-1. **create_publisher()**
-   - Used to create a publisher that can send messages to a topic
+1. **create_subscriber()**
+   - Used to create a subscriber that listens for messages from a topic
     ```python
-    self.publisher = self.create_publisher(Int32, 'number', 10)
+    self.subscriber = self.create_subscription(Int32, 'number', self.listener_callback, 10)
     ```
-     - Publishes **Int32** messages to the **number** topic.
+     - **self.listener_callback** - Callback function executed when a new message is received.
      - **Int32** - A standard message type provided by ROS2 (from std_msgs), representing a 32-bit signed integer
-     - **10** - The queue size of the message
+     - **10** - The queue size of the message(buffer size)
 
-2. **create_timer()**
-   - Sets up a periodic callback that executes a function at a fixed time interval
+2. **listener_callback()**
+   - This function is called every time a message is received on the subscribed topic
     ```python
-    self.timer = self.create_timer(1.0, self.publish_number)
+    def listener_callback(self, msg):
+    square = msg.data ** 2
+    self.get_logger().info(f'Received: {msg.data}, Square: {square}')
     ```
-    - Calls `publish_number()` every 1 second
-3. **publish()**
-   - Used to send a message to the topic associated with the publisher
-     ```python
-     self.publisher.publish(msg)
-     ```
-4. **get_logger().info()**
-   - Prints a log message to the terminal
-     ```python
-     self.get_logger().info(f'Publishing: {msg.data}')
-     ```
-5. - rclpy.init() - Initializes the ROS2 Python interface
-   - rclpy.shutdown() - Shuts it down
-   - rclpy.spin(node) - Keeps the node running so it can respond to timers, subscriptions
-   - destroy_node() - Cleans up resources used by the node before shutdown
-     
+    - Accesses the message data using msg.data
+---
+
+
+## To Run the Node
+ ```bash
+ cd/ros_ws
+ colcon build --symlink-install
+ source install/setup.bash
+ ros2 run my_python_package my_node
+ ```
   
-
-
-###  Publisher Node
-- A publisher continuously sends messages over a specified topic.
-- I learned how to create a timer-based publishing loop to simulate streaming data.
-
-### Subscriber Node
-- A subscriber listens to a topic and executes a callback function when a message is received.
-- I practiced performing operations (like squaring a number) on incoming data and logging results.
-
-###  Creating a ROS 2 Python Package
-- Learned how to create a package using `ros2 pkg create`.
-- Configured the package with `setup.py` and `package.xml` to define dependencies and entry points.
-
-###  Building and Running Nodes
-- Used `colcon build` to compile the workspace.
-- Learned to source the workspace environment correctly before running nodes.
-- Ran nodes using `ros2 run`, each in separate terminals to simulate real-time communication.
-
-###  Debugging & Common Issues
-- Faced issues like mismatched topic names, incorrect message types, and forgetting to source the setup file.
-- Gained confidence in using ROS 2 logging for debugging and tracing behavior.
-
 ---
 
 ##  Outcome
