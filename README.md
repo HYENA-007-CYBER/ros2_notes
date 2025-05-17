@@ -22,7 +22,7 @@ We need to learn about the basics of ROS2
 ### Creating a ROS2 workspace
 Workspace is a folder that contains ROS  packages and allows us to build and run them together<br>
 We need to create a **src/(source folder)** and **(build/ and install/ and log/) folders** that are auto generated during the build process
-- We need to create our packages inside the src/ folder
+- We need to create the packages inside the src/ folder
 - We need to use the **colcon build** command to build all the packages in our workspace
 - we need to source the **install/setup.bash** file so that the terminal can recognize the packages and can run the nodes
 
@@ -49,7 +49,7 @@ A **Python package** in ROS2 uses the `ament_python` build type and contains nod
 
 #####  Steps:
 
-1. **Navigate to our workspace's `src/` folder**  
+1. **Navigate to the workspace's `src/` folder**  
     ```bash
     cd ~/ros_ws/src/
     ```
@@ -146,7 +146,86 @@ ros2 topic echo /topic_name
 ```
 - Use `rqt_graph` to check every publisher ,subscriber and topic present in our packages
 
-### Publisher Node
+## Publisher Node
+
+A **Publisher Node** in ROS2 is a node that sends (publishes) messages to a **topic**
+
+It acts as a data producer
+
+#### Concept:
+- The publisher node creates a **Publisher** object linked to a specific topic name and message type
+- It then **publishes messages** on that topic using the `.publish()` method
+- Any other node that subscribes to this topic will receive those messages
+- Multiple subscribers can listen to the same topic
+
+
+
+### **QUESTION PROBLEM** - Basic Structure OF Publisher node
+
+```python
+#!/usr/bin/env/python3
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Int32
+
+class MyNode(Node):
+    def __init__(self):
+        super().__init__('number_publisher')
+        self.publisher = self.create_publisher(Int32,'number',10)
+        self.counter=1
+        self.timer = self.create_timer(1.0 , self.publish_number)
+        
+    def publish_number(self):
+        msg =Int32()
+        msg.data =self.counter
+        self.publisher.publish(msg)
+        self.get_logger().info(f'Publishing: {msg.data}')
+        self.counter +=1
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node=MyNode()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+    
+
+if __name__ =='__main__':
+    main()
+```
+#### Key Terms:
+1. **create_publisher()**
+   - Used to create a publisher that can send messages to a topic
+    ```python
+    self.publisher = self.create_publisher(Int32, 'number', 10)
+    ```
+     - Publishes **Int32** messages to the **number** topic.
+     - **Int32** - A standard message type provided by ROS2 (from std_msgs), representing a 32-bit signed integer
+     - **10** - The queue size of the message
+
+2. **create_timer()**
+   - Sets up a periodic callback that executes a function at a fixed time interval
+    ```python
+    self.timer = self.create_timer(1.0, self.publish_number)
+    ```
+    - Calls `publish_number()` every 1 second
+3. **publish()**
+   - Used to send a message to the topic associated with the publisher
+     ```python
+     self.publisher.publish(msg)
+     ```
+4. **get_logger().info()**
+   - Prints a log message to the terminal
+     ```python
+     self.get_logger().info(f'Publishing: {msg.data}')
+     ```
+5. - rclpy.init() - Initializes the ROS2 Python interface
+   - rclpy.shutdown() - Shuts it down
+   - rclpy.spin(node) - Keeps the node running so it can respond to timers, subscriptions
+   - destroy_node() - Cleans up resources used by the node before shutdown
+
+## Subscriber Node
 
 A **Publisher Node** in ROS2 is a node that sends (publishes) messages to a **topic**
 
