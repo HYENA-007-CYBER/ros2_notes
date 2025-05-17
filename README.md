@@ -198,7 +198,7 @@ if __name__ =='__main__':
 1. **create_publisher()**
    - Used to create a publisher that can send messages to a topic
     ```python
-  self.publisher = self.create_publisher(Int32, 'number', 10)
+    self.publisher = self.create_publisher(Int32, 'number', 10)
     ```
      - Publishes **Int32** messages to the **number** topic.
      - **Int32** - A standard message type provided by ROS2 (from std_msgs), representing a 32-bit signed integer
