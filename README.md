@@ -227,19 +227,20 @@ if __name__ =='__main__':
 
 ## Subscriber Node
 
-A **Publisher Node** in ROS2 is a node that sends (publishes) messages to a **topic**
+A **Subscriber Node** in ROS2 is a node that listens to messages from a **topic**.
 
-It acts as a data producer
+It acts as a data consumer.
 
 #### Concept:
-- The publisher node creates a **Publisher** object linked to a specific topic name and message type
-- It then **publishes messages** on that topic using the `.publish()` method
-- Any other node that subscribes to this topic will receive those messages
+
+- The subscriber node creates a **Subscriber** object linked to a specific topic name and message type  
+- It then **receives messages** from that topic using a **callback function**  
+- The callback function is automatically triggered whenever a new message is received  
 - Multiple subscribers can listen to the same topic
+- The subscriber must be spun using `rclpy.spin()` to keep listening for incoming messages  
 
 
-
-### **QUESTION PROBLEM** - Basic Structure OF Publisher node
+### **QUESTION PROBLEM** - Basic Structure OF Subscriber node
 
 ```python
 #!/usr/bin/env/python3
