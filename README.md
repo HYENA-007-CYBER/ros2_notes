@@ -195,15 +195,37 @@ if __name__ =='__main__':
     main()
 ```
 #### Key Terms:
-##### **1.create_publisher()**
-- Used to create a publisher that can send messages to a topic
-  ```python
+1. **create_publisher()**
+   - Used to create a publisher that can send messages to a topic
+    ```python
   self.publisher = self.create_publisher(Int32, 'number', 10)
-  ```
- - Publishes **Int32** messages to the **number** topic.
- - **Int32** - A standard message type provided by ROS2 (from std_msgs), representing a 32-bit signed integer
- - **10** - The queue size of the message
+    ```
+     - Publishes **Int32** messages to the **number** topic.
+     - **Int32** - A standard message type provided by ROS2 (from std_msgs), representing a 32-bit signed integer
+     - **10** - The queue size of the message
 
+2. **create_timer()**
+   - Sets up a periodic callback that executes a function at a fixed time interval
+    ```python
+   self.timer = self.create_timer(1.0, self.publish_number)
+   ```
+    - Calls `publish_number()` every 1 second
+3. **publish()**
+   - Used to send a message to the topic associated with the publisher
+     ```python
+     self.publisher.publish(msg)
+     ```
+4. **get_logger().info()**
+   - Prints a log message to the terminal
+     ```python
+     self.get_logger().info(f'Publishing: {msg.data}')
+     ```
+5. - rclpy.init() - Initializes the ROS2 Python interface
+   - rclpy.shutdown() - Shuts it down
+   - rclpy.spin(node) - Keeps the node running so it can respond to timers, subscriptions
+   - destroy_node() - Cleans up resources used by the node before shutdown
+     
+  
 
 
 ###  Publisher Node
