@@ -37,7 +37,123 @@ Package sholud be created inside the **src/** folder of our ROS2 workspace.
 - We need to specify the build type (e.g., ament_python, ament_cmake) 
 - We need to  define the  dependencies using the `--dependencies` flag
 
+  #### For a ROS2 Python Package
+
+A ROS2 Python package uses the `ament_python` build type and contains Python nodes and scripts.
+
+### Key Points:
+- Uses `setup.py` and `package.xml` for build and metadata
+- Nodes are written in Python and placed in the main package directory
+
+# Creating a ROS2 Package
+
+A **ROS2 package** is the basic unit of organization in a ROS2 workspace. It contains everything needed for a module in a ROS system, such as:
+
+- Node source files (Python or C++)
+- Launch files
+- Configuration files
+- Dependencies
+- Build and install instructions
+
+All packages must be placed inside the `src/` folder of a ROS2 workspace. After creating packages, use `colcon build` to build the workspace and `source install/setup.bash` to use the packages in your terminal session.
+
 ---
+
+## Creating a Python Package in ROS2
+
+A **Python package** in ROS2 uses the `ament_python` build type and contains nodes written in Python.
+
+### 🔧 Steps:
+
+1. **Navigate to your workspace's `src/` folder**  
+    ```bash
+    cd ~/ros2_ws/src/
+    ```
+
+2. **Create the Python package**  
+    ```bash
+    ros2 pkg create --build-type ament_python my_python_package --dependencies rclpy std_msgs
+    ```
+
+    This will:
+    - Create a folder `my_python_package/`
+    - Include `package.xml`, `setup.py`, and a `resource/` folder
+    - Set up dependencies
+
+3. **Add your Python node**
+    Place your script in:  
+    `my_python_package/my_python_package/my_node.py`
+
+4. **Make your Python script executable**  
+    ```bash
+    chmod +x my_node.py
+    ```
+
+5. **Add entry points to `setup.py`**  
+    Inside the `setup()` function, add:
+    ```python
+    entry_points={
+        'console_scripts': [
+            'my_node = my_python_package.my_node:main',
+        ],
+    },
+    ```
+
+6. **Build and source your workspace**  
+    ```bash
+    cd ~/ros2_ws/
+    colcon build
+    source install/setup.bash
+    ```
+
+---
+
+## Creating a C++ Package in ROS2
+
+A **C++ package** in ROS2 uses the `ament_cmake` build type and contains nodes written in C++.
+
+### 🔧 Steps:
+
+1. **Navigate to your workspace's `src/` folder**  
+    ```bash
+    cd ~/ros2_ws/src/
+    ```
+
+2. **Create the C++ package**  
+    ```bash
+    ros2 pkg create --build-type ament_cmake my_cpp_package --dependencies rclcpp std_msgs
+    ```
+
+    This will:
+    - Create a folder `my_cpp_package/`
+    - Include `package.xml`, `CMakeLists.txt`, and a `src/` folder
+    - Set up dependencies
+
+3. **Add your C++ node**
+    Create your node file in:  
+    `my_cpp_package/src/my_node.cpp`
+
+4. **Edit `CMakeLists.txt` to build the node**
+    Add the following:
+    ```cmake
+    add_executable(my_node src/my_node.cpp)
+    ament_target_dependencies(my_node rclcpp std_msgs)
+
+    install(TARGETS
+      my_node
+      DESTINATION lib/${PROJECT_NAME})
+    ```
+
+5. **Build and source your workspace**  
+    ```bash
+    cd ~/ros2_ws/
+    colcon build
+    source install/setup.bash
+    ```
+
+---
+
+
 
 
 ###  Publisher Node
