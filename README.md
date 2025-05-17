@@ -45,7 +45,7 @@ All packages must be placed inside the `src/` folder of our ROS2 workspace. Afte
 
 #### Creating a Python Package in ROS2
 
-A **Python package** in ROS2 uses the `ament_python` build type and contains nodes written in Python.
+A **Python package** in ROS2 uses the `ament_python` build type and contains nodes written in Python
 
 #####  Steps:
 
@@ -86,7 +86,7 @@ A **Python package** in ROS2 uses the `ament_python` build type and contains nod
 
 #### Creating a C++ Package in ROS2
 
-A **C++ package** in ROS2 uses the `ament_cmake` build type and contains nodes written in C++.
+A **C++ package** in ROS2 uses the `ament_cmake` build type and contains nodes written in C++
 
 #####  Steps:
 
@@ -127,9 +127,9 @@ A **C++ package** in ROS2 uses the `ament_cmake` build type and contains nodes w
 In ROS2, a **topic** is a communication channel that allows nodes to **publish** and **subscribe** messages
 
 #### Concept:
-- A **publisher** node sends messages to a named topic.
-- A **subscriber** node receives messages from that topic.
-- Nodes do not communicate directly with each other , they use topics as intermediaries.
+- A **publisher** node sends messages to a named topic
+- A **subscriber** node receives messages from that topic
+- Nodes do not communicate directly with each other , they use topics as intermediaries
 
 ####  Characteristics:
 - Topics are **unidirectional**: from publisher → subscriber(s)
@@ -144,7 +144,22 @@ ros2 topic info /topic_name
 ```bash
 ros2 topic echo /topic_name
 ```
-- Use `rqt_graph` to check every publisher ,subscriber and topic present in our packages 
+- Use `rqt_graph` to check every publisher ,subscriber and topic present in our packages
+
+### Publisher Node
+
+A **Publisher Node** in ROS2 is a node that sends (publishes) messages to a **topic**
+
+It acts as a data producer
+
+### Concept:
+- The publisher node creates a **Publisher** object linked to a specific topic name and message type
+- It then **publishes messages** on that topic using the `.publish()` method
+- Any other node that subscribes to this topic will receive those messages
+- Multiple subscribers can listen to the same topic
+
+
+
   
 
 
