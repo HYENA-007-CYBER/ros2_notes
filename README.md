@@ -207,8 +207,8 @@ if __name__ =='__main__':
 2. **create_timer()**
    - Sets up a periodic callback that executes a function at a fixed time interval
     ```python
-   self.timer = self.create_timer(1.0, self.publish_number)
-   ```
+    self.timer = self.create_timer(1.0, self.publish_number)
+    ```
     - Calls `publish_number()` every 1 second
 3. **publish()**
    - Used to send a message to the topic associated with the publisher
