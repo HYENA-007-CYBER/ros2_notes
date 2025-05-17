@@ -152,11 +152,40 @@ A **Publisher Node** in ROS2 is a node that sends (publishes) messages to a **to
 
 It acts as a data producer
 
-### Concept:
+#### Concept:
 - The publisher node creates a **Publisher** object linked to a specific topic name and message type
 - It then **publishes messages** on that topic using the `.publish()` method
 - Any other node that subscribes to this topic will receive those messages
 - Multiple subscribers can listen to the same topic
+
+
+
+#### **QUESTION PROBLEM** - Basic Structure OF Publisher node
+
+```python
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+
+class MyPublisher(Node):
+    def __init__(self):
+        super().__init__('my_publisher_node')  # Node name
+        self.publisher_ = self.create_publisher(String, 'my_topic', 10)  # Create publisher
+        self.timer = self.create_timer(1.0, self.publish_callback)  # Call function every 1 second
+
+    def publish_callback(self):
+        msg = String()
+        msg.data = 'Hello, ROS2!'
+        self.publisher_.publish(msg)
+        self.get_logger().info(f'Published: "{msg.data}"')
+
+def main():
+    rclpy.init()
+    node = MyPublisher()
+    rclpy.spin(node)  # Keeps node running
+    node.destroy_node()
+    rclpy.shutdown()
+
 
 
 
