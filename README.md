@@ -45,7 +45,7 @@ A ROS2 Python package uses the `ament_python` build type and contains Python nod
 - Uses `setup.py` and `package.xml` for build and metadata
 - Nodes are written in Python and placed in the main package directory
 
-# Creating a ROS2 Package
+### Creating a ROS2 Package
 
 A **ROS2 package** is the basic unit of organization in a ROS2 workspace. It contains everything needed for a module in a ROS system, such as:
 
@@ -59,20 +59,20 @@ All packages must be placed inside the `src/` folder of a ROS2 workspace. After 
 
 ---
 
-## Creating a Python Package in ROS2
+#### Creating a Python Package in ROS2
 
 A **Python package** in ROS2 uses the `ament_python` build type and contains nodes written in Python.
 
-### 🔧 Steps:
+####  Steps:
 
-1. **Navigate to your workspace's `src/` folder**  
+1. **Navigate to our workspace's `src/` folder**  
     ```bash
     cd ~/ros2_ws/src/
     ```
 
 2. **Create the Python package**  
     ```bash
-    ros2 pkg create --build-type ament_python my_python_package --dependencies rclpy std_msgs
+    ros2 pkg create --build-type ament_python my_python_package --dependencies rclpy 
     ```
 
     This will:
@@ -99,7 +99,7 @@ A **Python package** in ROS2 uses the `ament_python` build type and contains nod
     },
     ```
 
-6. **Build and source your workspace**  
+6. **Build and source our workspace**  
     ```bash
     cd ~/ros2_ws/
     colcon build
@@ -108,20 +108,20 @@ A **Python package** in ROS2 uses the `ament_python` build type and contains nod
 
 ---
 
-## Creating a C++ Package in ROS2
+#### Creating a C++ Package in ROS2
 
 A **C++ package** in ROS2 uses the `ament_cmake` build type and contains nodes written in C++.
 
-### 🔧 Steps:
+#####  Steps:
 
-1. **Navigate to your workspace's `src/` folder**  
+1. **Navigate to our workspace's `src/` folder**  
     ```bash
     cd ~/ros2_ws/src/
     ```
 
 2. **Create the C++ package**  
     ```bash
-    ros2 pkg create --build-type ament_cmake my_cpp_package --dependencies rclcpp std_msgs
+    ros2 pkg create --build-type ament_cmake my_cpp_package --dependencies rclcpp 
     ```
 
     This will:
